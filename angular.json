@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "school-times": {
+    "school-times-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/school-times",
+            "outputPath": "dist/school-times-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "school-times:build"
+            "browserTarget": "school-times-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "school-times:build:production"
+              "browserTarget": "school-times-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "school-times:build"
+            "browserTarget": "school-times-web:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "school-times:serve"
+            "devServerTarget": "school-times-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "school-times:serve:production"
+              "devServerTarget": "school-times-web:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "school-times"
+  "defaultProject": "school-times-web"
 }
