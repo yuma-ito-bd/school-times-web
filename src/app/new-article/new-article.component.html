@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+        <input type="text" [formControl]="titleForm" placeholder="タイトル"/>
+    </div>
+    <div>
+        <textarea placeholder="本文" [formControl]="contentsForm"></textarea>
+    </div>
+    <button type="submit">申請</button>
+    <button type="button" (click)="save()">保存</button>
+    <button type="button" (click)="cancel()">キャンセル</button>
+</form>
