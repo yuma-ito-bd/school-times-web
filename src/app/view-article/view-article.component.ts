@@ -9,7 +9,7 @@ export class ViewArticleComponent implements OnInit {
   title: string;
   contents: string;
   author: string;
-  createAt: Date;
+  createdAt: Date;
 
 
   constructor() { }
@@ -18,7 +18,7 @@ export class ViewArticleComponent implements OnInit {
     this.title = '新年が始まりました';
     this.contents = '明けましておめでとうございます。';
     this.author = 'Yoda';
-    this.createAt = new Date();
+    this.createdAt = new Date();
   }
 
 }
