@@ -1,8 +1,11 @@
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import localeJa from '@angular/common/locales/ja';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ArticlesData } from 'in-memory/articles-data';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
@@ -27,7 +30,9 @@ registerLocaleData(localeJa);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(ArticlesData)
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ja-JP'},
