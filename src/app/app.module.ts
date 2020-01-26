@@ -9,6 +9,7 @@ import { NewArticleComponent } from './new-article/new-article.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { TopComponent } from './top/top.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 // 日付の表示のためにロケールを日本に変更
 registerLocaleData(localeJa);
@@ -19,7 +20,8 @@ registerLocaleData(localeJa);
     ViewArticleComponent,
     NewArticleComponent,
     EditArticleComponent,
-    TopComponent
+    TopComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
