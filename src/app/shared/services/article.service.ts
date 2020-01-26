@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Article } from 'app/shared/models/article';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +10,7 @@ import { Article } from 'app/shared/models/article';
 export class ArticleService {
   articleList: Article[];
 
-  constructor() {
-    // TODO: httpサービス
-    this.articleList = [
-      new Article('おはよう', 'Good Morning!', 'A先生'),
-      new Article('こんにちは', 'Good Afternoon!', 'B先生'),
-      new Article('こんばんは', 'Good Evening!', 'C先生')
-    ];
-    this.articleList.forEach((article, index) => {
-      article.id = index;
-    });
-  }
+  constructor(private httpClient: HttpClientService) {}
 
   /**
    * 学級だよりを1件取得する
@@ -25,16 +18,21 @@ export class ArticleService {
    */
   get(id: number): Article {
     console.log(`AritcleService get [id: ${id}]`);
+
     return this.articleList.find((article) => article.id === id);
   }
 
   /**
    * すべての学級だよりを取得する
    */
-  getAll(): Article[] {
+  getAll(): Observable<Article[]> {
     console.log(`AritcleService getAll`);
-    // TODO: httpサービスを呼ぶ
-    return this.articleList;
+    return this.httpClient.get<Article[]>('api/articles').pipe(
+      map(data => {
+        this.articleList = data;
+        return data;
+      })
+    );
   }
 
   /**
