@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Article } from 'app/shared/models/article';
+import { ArticleService } from 'app/shared/services/article.service';
 
 @Component({
   selector: 'app-edit-article',
@@ -7,6 +9,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit-article.component.scss']
 })
 export class EditArticleComponent implements OnInit {
+  article: Article;
+
   titleForm = new FormControl('', [
     Validators.maxLength(30)
   ]);
@@ -20,27 +24,24 @@ export class EditArticleComponent implements OnInit {
     contents: this.contentsForm
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { }
 
   ngOnInit() {
-    // TODO: サービスからデータ取得する
-    this.titleForm.setValue('こんにちは！');
-    this.contentsForm.setValue('今日もいい天気ですね。');
+    // TODO: パスパラメータからID取得
+    this.article = this.articleService.get(0);
+    this.titleForm.setValue(this.article.title);
+    this.contentsForm.setValue(this.article.contents);
   }
 
   /**
-   * 申請ボタン押下時処理
+   * 更新ボタン押下時処理
    */
   submit() {
     console.log(this.form.getRawValue());
-  }
+    this.article.title = this.titleForm.value;
+    this.article.contents = this.contentsForm.value;
 
-  /**
-   * 保存ボタン押下時処理
-   */
-  save() {
-    console.log(this.form.getRawValue());
-    console.log('save');
+    this.articleService.update(this.article);
   }
 
   /**

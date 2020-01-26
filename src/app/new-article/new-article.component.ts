@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Article } from 'app/shared/models/article';
+import { ArticleService } from 'app/shared/services/article.service';
 
 @Component({
   selector: 'app-new-article',
@@ -21,21 +23,25 @@ export class NewArticleComponent {
     contents: this.contentsForm
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { }
 
   /**
    * 申請ボタン押下時処理
    */
   submit() {
     console.log(this.form.getRawValue());
+    const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
+    this.articleService.create(article);
   }
 
   /**
    * 保存ボタン押下時処理
    */
   save() {
-    console.log(this.form.getRawValue());
     console.log('save');
+    console.log(this.form.getRawValue());
+    const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
+    this.articleService.create(article);
   }
 
   /**

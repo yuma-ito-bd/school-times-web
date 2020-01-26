@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'app/shared/models/article';
+import { ArticleService } from 'app/shared/services/article.service';
 
 @Component({
   selector: 'app-view-article',
@@ -6,19 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-article.component.scss']
 })
 export class ViewArticleComponent implements OnInit {
-  title: string;
-  contents: string;
-  author: string;
-  createdAt: Date;
+  article: Article;
 
-
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.title = '新年が始まりました';
-    this.contents = '明けましておめでとうございます。';
-    this.author = 'Yoda';
-    this.createdAt = new Date();
+    // TODO: pathParameterでid指定
+    this.article = this.articleService.get(0);
   }
 
 }

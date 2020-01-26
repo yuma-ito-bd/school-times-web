@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from 'app/models/article';
+import { Article } from 'app/shared/models/article';
+import { ArticleService } from 'app/shared/services/article.service';
 
 @Component({
   selector: 'app-top',
@@ -9,13 +10,10 @@ import { Article } from 'app/models/article';
 export class TopComponent implements OnInit {
   articleList: Article[];
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.articleList = [
-      new Article('おはよう', 'Good Morning!', 'A先生'),
-      new Article('こんにちは', 'Good Afternoon!', 'B先生')
-    ];
+    this.articleList = this.articleService.getAll();
   }
 
 }
