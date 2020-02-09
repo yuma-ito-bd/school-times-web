@@ -28,9 +28,9 @@ export class EditArticleComponent implements OnInit {
 
   ngOnInit() {
     // TODO: パスパラメータからID取得
-    this.article = this.articleService.get(0);
-    this.titleForm.setValue(this.article.title);
-    this.contentsForm.setValue(this.article.contents);
+    // this.article = this.articleService.get(0);
+    // this.titleForm.setValue(this.article.title);
+    // this.contentsForm.setValue(this.article.contents);
   }
 
   /**

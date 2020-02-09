@@ -16,10 +16,9 @@ export class ArticleService {
    * 学級だよりを1件取得する
    * @param id 学級だよりのID
    */
-  get(id: number): Article {
+  get(id: number): Observable<Article> {
     console.log(`AritcleService get [id: ${id}]`);
-
-    return this.articleList.find((article) => article.id === id);
+    return this.httpClient.get<Article>(`api/articles/${id}`);
   }
 
   /**

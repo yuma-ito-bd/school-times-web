@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Article } from 'app/shared/models/article';
 import { ArticleService } from 'app/shared/services/article.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-article',
@@ -8,13 +10,15 @@ import { ArticleService } from 'app/shared/services/article.service';
   styleUrls: ['./view-article.component.scss']
 })
 export class ViewArticleComponent implements OnInit {
-  article: Article;
+  article$: Observable<Article>;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    // TODO: pathParameterでid指定
-    this.article = this.articleService.get(0);
+    this.router.params.subscribe((params) => {
+      const id = params.id;
+      this.article$ = this.articleService.get(id);
+    });
   }
 
 }
