@@ -1,4 +1,4 @@
-<div *ngFor="let article of articleList$ | async">
+<div *ngFor="let article of articleList$ | async" routerLink="/view/{{article.id}}">
     <div>タイトル：{{article.title}}</div>
     <div>本文：{{article.contents}}</div>
     <div>作成者：{{article.author}} </div>
