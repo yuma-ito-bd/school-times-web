@@ -20,12 +20,13 @@ export class ArticleService {
     console.log(`AritcleService get [id: ${id}]`);
     if (this.articleList) {
       return of(this.articleList.find((article) => article.id === id));
-    } else {
-      return this.getAll().pipe(map((data) => {
+    }
+
+    return this.getAll().pipe(map((data) => {
         this.articleList = data;
         return data.find(article => article.id === id);
-      }));
-    }
+    }));
+
   }
 
   /**
@@ -33,6 +34,10 @@ export class ArticleService {
    */
   getAll(): Observable<Article[]> {
     console.log(`AritcleService getAll`);
+    if (this.articleList) {
+      return of(this.articleList);
+    }
+
     return this.httpClient.get<Article[]>('api/articles').pipe(
       map(data => {
         this.articleList = data;
