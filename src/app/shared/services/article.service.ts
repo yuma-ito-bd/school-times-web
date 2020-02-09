@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Article } from 'app/shared/models/article';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClientService } from './http-client.service';
 
@@ -18,7 +18,14 @@ export class ArticleService {
    */
   get(id: number): Observable<Article> {
     console.log(`AritcleService get [id: ${id}]`);
-    return this.httpClient.get<Article>(`api/articles/${id}`);
+    if (this.articleList) {
+      return of(this.articleList.find((article) => article.id === id));
+    } else {
+      return this.getAll().pipe(map((data) => {
+        this.articleList = data;
+        return data.find(article => article.id === id);
+      }));
+    }
   }
 
   /**

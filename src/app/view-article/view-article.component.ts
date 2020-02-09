@@ -16,7 +16,7 @@ export class ViewArticleComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe((params) => {
-      const id = params.id;
+      const id: number = Number(params.id);
       this.article$ = this.articleService.get(id);
     });
   }
