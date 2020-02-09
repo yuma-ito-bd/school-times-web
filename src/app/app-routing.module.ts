@@ -7,7 +7,7 @@ import { ViewArticleComponent } from './view-article/view-article.component';
 
 const routes: Routes = [
   {path: '', component: TopComponent },
-  {path: 'view/:id', component: ViewArticleComponent}, // TODO: pathParameterでID指定
+  {path: 'view/:id', component: ViewArticleComponent},
   {path: 'new', component: NewArticleComponent},
   {path: 'edit', component: EditArticleComponent}, // TODO: pathParameterでID指定
   {path: '**', redirectTo: ''}
