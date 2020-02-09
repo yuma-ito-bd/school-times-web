@@ -50,11 +50,13 @@ export class ArticleService {
    * 学級だよりを作成する
    * @param article 学級だより
    */
-  create(article: Article): void {
+  async create(article: Article): Promise<void> {
     console.log(`AritcleService create [title: ${article.title}]`);
-    // TODO: httpサービスを呼ぶ
-    console.log(article);
-    article.id = 10;
+    const result = await this.httpClient.post<Article>('api/articles', article).toPromise();
+    article.id = result.id;
+    if (!this.articleList) {
+      await this.getAll().toPromise();
+    }
     this.articleList.unshift(article);
   }
 

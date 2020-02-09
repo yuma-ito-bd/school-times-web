@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,5 +25,13 @@ export class HttpClientService {
     );
   }
 
-  // post();
+  /**
+   * POSTリクエストを送る
+   * @param url URL
+   * @param body bodyオブジェクト
+   */
+  post<T>(url: string, body?: object): Observable<T> {
+    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
+    return this.httpClient.post<T>(url, body, options);
+  }
 }
