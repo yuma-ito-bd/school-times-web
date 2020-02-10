@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from 'app/shared/models/article';
+import { Article, STATUS } from 'app/shared/models/article';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClientService } from './http-client.service';
@@ -10,7 +10,7 @@ import { HttpClientService } from './http-client.service';
 export class ArticleService {
   articleList: Article[];
 
-  constructor(private httpClient: HttpClientService) {}
+  constructor(private httpClient: HttpClientService) { }
 
   /**
    * 学級だよりを1件取得する
@@ -23,8 +23,8 @@ export class ArticleService {
     }
 
     return this.getAll().pipe(map((data) => {
-        this.articleList = data;
-        return data.find(article => article.id === id);
+      this.articleList = data;
+      return data.find(article => article.id === id);
     }));
 
   }
@@ -53,11 +53,22 @@ export class ArticleService {
   async create(article: Article): Promise<void> {
     console.log(`AritcleService create [title: ${article.title}]`);
     const result = await this.httpClient.post<Article>('api/articles', article).toPromise();
+    console.log(`create success [data: ${JSON.stringify(result)}]`);
     article.id = result.id;
     if (!this.articleList) {
       await this.getAll().toPromise();
     }
     this.articleList.unshift(article);
+  }
+
+  /**
+   * 公開申請をする
+   * @param article 公開申請したい記事
+   */
+  async requestPublishment(article: Article): Promise<void> {
+    console.log(`ArticleService requestPublishment [title: ${article.title}]`);
+    article.status = STATUS.UNPUBLISHED;
+    await this.create(article);
   }
 
   /**
@@ -76,7 +87,7 @@ export class ArticleService {
    * 学級だよりを削除する
    * @param id 削除する学級だよりのID
    */
-  delete(id: number ): void {
+  delete(id: number): void {
     console.log(`AritcleService delete [id: ${id}]`);
     // TODO: httpサービスを呼ぶ
     console.log(`delete id: ${id}`);

@@ -29,10 +29,11 @@ export class NewArticleComponent {
   /**
    * 申請ボタン押下時処理
    */
-  submit() {
-    console.log(this.form.getRawValue());
+  async submit() {
+    console.log('submit');
     const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
-    this.article.create(article);
+    await this.article.requestPublishment(article);
+    this.route.navigate(['/view']);
   }
 
   /**
