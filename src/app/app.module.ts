@@ -4,6 +4,7 @@ import localeJa from '@angular/common/locales/ja';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ArticlesData } from 'in-memory/articles-data';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,8 @@ registerLocaleData(localeJa);
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(ArticlesData)
+    HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ja-JP'},
