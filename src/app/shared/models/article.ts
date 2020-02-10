@@ -1,3 +1,11 @@
+export enum STATUS {
+    /** 一時保存（未申請） */
+    DRAFT,
+    /** 申請済みで未公開 */
+    UNPUBLISHED,
+    /** 公開済み */
+    PUBLISHED
+}
 
 export class Article {
     /** 記事ID */
@@ -10,14 +18,14 @@ export class Article {
     author: string;
     /** 作成日 */
     createdAt: Date;
-    /** 公開済みか */
-    isPublised: boolean;
+    /** 状態 */
+    status: STATUS;
 
     constructor(title: string, contents: string, author: string) {
         this.title = title;
         this.contents = contents;
         this.author = author;
         this.createdAt = new Date();
-        this.isPublised = false;
+        this.status = STATUS.DRAFT;
     }
 }
