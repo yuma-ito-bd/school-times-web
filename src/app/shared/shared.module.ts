@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ArticlesData } from 'in-memory/articles-data';
+import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { ArticleService } from './services/article.service';
 
@@ -17,7 +18,8 @@ import { ArticleService } from './services/article.service';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    AppRoutingModule
   ],
   providers: [
     ArticleService
