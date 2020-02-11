@@ -14,7 +14,7 @@ export class TopComponent implements OnInit {
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-   this.articleList$ =   this.articleService.getAll();
+    this.articleList$ = this.articleService.getAll();
   }
 
 }

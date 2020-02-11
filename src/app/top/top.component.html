@@ -1,7 +1,5 @@
-<div *ngFor="let article of articleList$ | async" routerLink="/view/{{article.id}}">
-    <div>タイトル：{{article.title}}</div>
-    <div>本文：{{article.contents}}</div>
-    <div>作成者：{{article.author}} </div>
-    <div>日付：{{article.createdAt | date}} </div>
-    <div>状態：{{article.status}} </div>
-</div>
+<ng-container *ngIf="(articleList$ | async) as list">
+    <div *ngFor="let item of list">
+        <app-article-card [article]=item></app-article-card>
+    </div>
+</ng-container>

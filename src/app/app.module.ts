@@ -1,20 +1,16 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import localeJa from '@angular/common/locales/ja';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ArticlesData } from 'in-memory/articles-data';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { SharedModule } from './shared/shared.module';
+import { ArticleCardComponent } from './top/article-card/article-card.component';
 import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
@@ -28,20 +24,18 @@ registerLocaleData(localeJa);
     NewArticleComponent,
     EditArticleComponent,
     TopComponent,
-    HeaderComponent
+    ArticleCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
     BrowserAnimationsModule,
     SharedModule,
+    MatCardModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ja-JP'},
-    ArticleService
   ],
   bootstrap: [AppComponent]
 })
