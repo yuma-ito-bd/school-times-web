@@ -34,10 +34,6 @@ export class ArticleService {
    */
   getAll(): Observable<Article[]> {
     console.log(`AritcleService getAll`);
-    if (this.articleList) {
-      return of(this.articleList);
-    }
-
     return this.httpClient.get<Article[]>('api/articles').pipe(
       map(data => {
         this.articleList = data;
