@@ -14,8 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { ArticleService } from './shared/services/article.service';
+import { SharedModule } from './shared/shared.module';
 import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
@@ -38,9 +37,7 @@ registerLocaleData(localeJa);
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule
+    SharedModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ja-JP'},
