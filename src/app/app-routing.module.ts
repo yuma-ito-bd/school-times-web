@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminTopComponent } from './admin-top/admin-top.component';
+import { AdminTopComponent } from './admin/top/admin-top.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { NewArticleComponent } from './new-article/new-article.component';
 import { TopComponent } from './top/top.component';

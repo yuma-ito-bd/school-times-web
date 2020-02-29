@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminTopComponent } from './admin/top/admin-top.component';
+import { ArticleCardForAdminComponent } from './admin/top/article-card-for-admin/article-card-for-admin.component';
 import { AdminTopComponent } from './admin-top/admin-top.component';
 import { ArticleCardForAdminComponent } from './admin-top/article-card-for-admin/article-card-for-admin.component';
 import { AppRoutingModule } from './app-routing.module';
