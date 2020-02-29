@@ -9,8 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminTopComponent } from './admin/top/admin-top.component';
 import { ArticleCardForAdminComponent } from './admin/top/article-card-for-admin/article-card-for-admin.component';
-import { AdminTopComponent } from './admin-top/admin-top.component';
-import { ArticleCardForAdminComponent } from './admin-top/article-card-for-admin/article-card-for-admin.component';
+import { AdminViewComponent } from './admin/view-article/admin-view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
@@ -32,7 +31,8 @@ registerLocaleData(localeJa);
     TopComponent,
     ArticleCardComponent,
     AdminTopComponent,
-    ArticleCardForAdminComponent
+    ArticleCardForAdminComponent,
+    AdminViewComponent
   ],
   imports: [
     BrowserModule,

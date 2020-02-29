@@ -1,0 +1,9 @@
+<ng-container *ngIf="( article$ | async ) as article">
+    <div>タイトル：{{article.title}}</div>
+    <div>本文：{{article.contents}}</div>
+    <div>作成者：{{article.author}} </div>
+    <div>日付：{{article.createdAt | date}} </div>
+    <div>状態：{{article.status}} </div>
+</ng-container>
+
+<button mat-flat-button color="primary" (click)="publish()">公開許可</button>
