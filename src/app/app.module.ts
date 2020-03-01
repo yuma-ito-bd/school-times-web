@@ -24,31 +24,29 @@ import { ViewArticleComponent } from './view-article/view-article.component';
 registerLocaleData(localeJa);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ViewArticleComponent,
-    NewArticleComponent,
-    EditArticleComponent,
-    TopComponent,
-    ArticleCardComponent,
-    AdminTopComponent,
-    ArticleCardForAdminComponent,
-    AdminViewComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    SharedModule,
-    MatCardModule,
-    MatButtonModule,
-    MatListModule,
-    MatInputModule
-  ],
-  providers: [
-    {provide: LOCALE_ID, useValue: 'ja-JP'},
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ViewArticleComponent,
+        NewArticleComponent,
+        EditArticleComponent,
+        TopComponent,
+        ArticleCardComponent,
+        AdminTopComponent,
+        ArticleCardForAdminComponent,
+        AdminViewComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        SharedModule,
+        MatCardModule,
+        MatButtonModule,
+        MatListModule,
+        MatInputModule,
+    ],
+    providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

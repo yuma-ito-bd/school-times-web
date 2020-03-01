@@ -4,17 +4,16 @@ import { ArticleService } from 'app/shared/services/article.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-top',
-  templateUrl: './top.component.html',
-  styleUrls: ['./top.component.scss']
+    selector: 'app-top',
+    templateUrl: './top.component.html',
+    styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
-  articleList$: Observable<Article[]>;
+    articleList$: Observable<Article[]>;
 
-  constructor(private articleService: ArticleService) { }
+    constructor(private articleService: ArticleService) {}
 
-  ngOnInit() {
-    this.articleList$ = this.articleService.getAll();
-  }
-
+    ngOnInit() {
+        this.articleList$ = this.articleService.getAll();
+    }
 }

@@ -11,21 +11,16 @@ import { ArticleForSuperUserService } from './services/article-for-super-user.se
 import { ArticleService } from './services/article.service';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
-    MatToolbarModule,
-    MatButtonModule,
-    AppRoutingModule
-  ],
-  providers: [
-    ArticleService,
-    ArticleForSuperUserService
-  ],
-  exports: [HeaderComponent]
+    declarations: [HeaderComponent],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(ArticlesData),
+        MatToolbarModule,
+        MatButtonModule,
+        AppRoutingModule,
+    ],
+    providers: [ArticleService, ArticleForSuperUserService],
+    exports: [HeaderComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -8,17 +8,17 @@ import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
 const routes: Routes = [
-  {path: '', component: TopComponent },
-  {path: 'view/:id', component: ViewArticleComponent},
-  {path: 'edit', component: EditArticleComponent}, // TODO: pathParameterでID指定
-  {path: 'admin/top', component: AdminTopComponent},
-  {path: 'admin/new', component: NewArticleComponent},
-  {path: 'admin/view/:id', component: AdminViewComponent},
-  {path: '**', redirectTo: ''}
+    { path: '', component: TopComponent },
+    { path: 'view/:id', component: ViewArticleComponent },
+    { path: 'edit', component: EditArticleComponent }, // TODO: pathParameterでID指定
+    { path: 'admin/top', component: AdminTopComponent },
+    { path: 'admin/new', component: NewArticleComponent },
+    { path: 'admin/view/:id', component: AdminViewComponent },
+    { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

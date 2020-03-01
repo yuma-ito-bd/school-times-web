@@ -4,7 +4,7 @@ export enum STATUS {
     /** 申請済みで未公開 */
     UNPUBLISHED = 1,
     /** 公開済み */
-    PUBLISHED = 2
+    PUBLISHED = 2,
 }
 
 export class Article {
@@ -23,7 +23,7 @@ export class Article {
 
     constructor(title: string, contents: string, author: string);
     constructor(data: Partial<Article>);
-    constructor(data: string | Partial<Article> , contents?: string, author?: string ) {
+    constructor(data: string | Partial<Article>, contents?: string, author?: string) {
         if (typeof data === 'string') {
             this.title = data;
             this.contents = contents;
