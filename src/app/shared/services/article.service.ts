@@ -26,7 +26,6 @@ export class ArticleService {
       this.articleList = data;
       return data.find(article => article.id === id);
     }));
-
   }
 
   /**
@@ -34,7 +33,7 @@ export class ArticleService {
    */
   getAll(): Observable<Article[]> {
     console.log(`AritcleService getAll`);
-    return this.httpClient.get<Article[]>('api/articles').pipe(
+    return this.httpClient.get<Article[]>('articles').pipe(
       map(data => {
         this.articleList = data;
         return data;
@@ -48,8 +47,9 @@ export class ArticleService {
    */
   async create(article: Article): Promise<void> {
     console.log(`AritcleService create [title: ${article.title}]`);
-    const result = await this.httpClient.post<Article>('api/articles', article).toPromise();
+    const result = await this.httpClient.post<Article>('articles', article).toPromise();
     console.log(`create success [data: ${JSON.stringify(result)}]`);
+    // TODO: Articleオブジェクトを再作成する
     article.id = result.id;
     if (!this.articleList) {
       await this.getAll().toPromise();

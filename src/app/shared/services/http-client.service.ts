@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { concatMap, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -11,27 +12,57 @@ export class HttpClientService {
 
   constructor(private httpClient: HttpClient) { }
 
+  private getUrl(path: string) {
+    return `${environment.apiEndpoint}/${path}`;
+  }
+
   /**
    * GETリクエストを送る
-   * @param url リクエスト先URL
+   * @param path リソースパス
    * @param options リクエストオプション
    */
-  get<T>(url: string, options?: object): Observable<T> {
+  get<T>(path: string, options?: object): Observable<T> {
+    const url = this.getUrl(path);
+    console.log(`http GET request ${url}`);
     return this.httpClient.get<T>(url, options).pipe(
-      map( data => {
+      tap(data => {
         console.log(`SUCCESS GET request [data: ${JSON.stringify(data)}]`);
-        return data;
       })
     );
   }
 
   /**
    * POSTリクエストを送る
-   * @param url URL
+   * @param path リソースパス
    * @param body bodyオブジェクト
    */
-  post<T>(url: string, body?: object): Observable<T> {
-    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-    return this.httpClient.post<T>(url, body, options);
+  post<T>(path: string, body?: object): Observable<T> {
+    const url = this.getUrl(path);
+    console.log(`http POST request ${url} [body: ${JSON.stringify(body)}`);
+    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.httpClient.post<T>(url, body, options).pipe(
+      tap(data => {
+        console.log(`SUCCESS POST request [data: ${JSON.stringify(data)}]`);
+      })
+    );
+  }
+
+  /**
+   * PUTリクエストを送る
+   * @param path リソースパス
+   * @param body bodyオブジェクト
+   */
+  put<T>(path: string, body?: object): Observable<T> {
+    const url = this.getUrl(path);
+    console.log(`http PUT request ${url} [body: ${JSON.stringify(body)}`);
+    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.httpClient.put<T>(url, body, options).pipe(
+      // TODO: backend apiができたら消す
+      concatMap(() => this.get<T>(path)),
+      tap(data => {
+        console.log(`SUCCESS PUT request [data: ${JSON.stringify(data)}]`);
+      })
+    );
+
   }
 }
