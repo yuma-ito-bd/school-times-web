@@ -4,6 +4,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,7 +43,8 @@ registerLocaleData(localeJa);
     SharedModule,
     MatCardModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatInputModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ja-JP'},

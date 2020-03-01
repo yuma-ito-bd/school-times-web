@@ -1,11 +1,11 @@
 <h1>教師用一覧画面</h1>
-<button mat-flat-button color="primary" routerLink="/new">新規作成</button>
+<button mat-flat-button color="primary" routerLink="/admin/new">新規作成</button>
 
 <ng-container *ngIf="(articleList$ | async) as list">
     <mat-nav-list>
         <mat-divider></mat-divider>
         <ng-container *ngFor="let item of list">
-            <app-article-card-for-admin [article]=item ></app-article-card-for-admin>
+            <app-article-card-for-admin [article]=item></app-article-card-for-admin>
             <mat-divider></mat-divider>
         </ng-container>
     </mat-nav-list>

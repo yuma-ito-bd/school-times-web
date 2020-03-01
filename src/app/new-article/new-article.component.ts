@@ -33,7 +33,7 @@ export class NewArticleComponent {
     console.log('submit');
     const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
     await this.article.requestPublishment(article);
-    this.route.navigate(['/view']);
+    this.route.navigate(['/admin/top']);
   }
 
   /**
@@ -43,7 +43,7 @@ export class NewArticleComponent {
     console.log('save');
     const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
     await this.article.create(article);
-    this.route.navigate(['/view']);
+    this.route.navigate(['/admin/top']);
   }
 
   /**
@@ -51,6 +51,6 @@ export class NewArticleComponent {
    */
   cancel() {
     console.log('cancel');
-    // TODO: 閲覧画面に遷移
+    this.route.navigate(['/admin/top']);
   }
 }
