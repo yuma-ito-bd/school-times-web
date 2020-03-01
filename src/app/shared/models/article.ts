@@ -1,10 +1,10 @@
 export enum STATUS {
     /** 一時保存（未申請） */
-    DRAFT,
+    DRAFT = 0,
     /** 申請済みで未公開 */
-    UNPUBLISHED,
+    UNPUBLISHED = 1,
     /** 公開済み */
-    PUBLISHED
+    PUBLISHED = 2
 }
 
 export class Article {
@@ -21,11 +21,22 @@ export class Article {
     /** 状態 */
     status: STATUS;
 
-    constructor(title: string, contents: string, author: string) {
-        this.title = title;
-        this.contents = contents;
-        this.author = author;
-        this.createdAt = new Date();
-        this.status = STATUS.DRAFT;
+    constructor(title: string, contents: string, author: string);
+    constructor(data: Partial<Article>);
+    constructor(data: string | Partial<Article> , contents?: string, author?: string ) {
+        if (typeof data === 'string') {
+            this.title = data;
+            this.contents = contents;
+            this.author = author;
+            this.createdAt = new Date();
+            this.status = STATUS.DRAFT;
+        } else {
+            this.id = data.id;
+            this.title = data.title;
+            this.contents = data.contents;
+            this.author = data.author;
+            this.createdAt = data.createdAt;
+            this.status = data.status;
+        }
     }
 }

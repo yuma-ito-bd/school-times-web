@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'app/shared/models/article';
+import { ArticleForSuperUserService } from 'app/shared/services/article-for-super-user.service';
 import { ArticleService } from 'app/shared/services/article.service';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-view',
@@ -11,18 +13,28 @@ import { Observable } from 'rxjs';
 })
 export class AdminViewComponent implements OnInit {
   article$: Observable<Article>;
+  private id: number;
+  private article: Article;
 
-  constructor(private article: ArticleService, private route: ActivatedRoute) { }
+  constructor(
+    private articleService: ArticleService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private articleForSuperUser: ArticleForSuperUserService,
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id: number = Number(params.id);
-      this.article$ = this.article.get(id);
-     });
+      this.id = Number(params.id);
+      this.article$ = this.articleService.get(this.id).pipe(
+        tap(data => this.article = new Article(data))
+      );
+    });
   }
 
-  publish() {
-    console.log('publish');
+  async publish() {
+    await this.articleForSuperUser.publish(this.article);
+    this.router.navigate(['admin/top']).then();
   }
 
 }
