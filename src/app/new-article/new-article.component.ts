@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Article } from 'app/shared/models/article';
-import { ArticleService } from 'app/shared/services/article.service';
+import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 
 @Component({
     selector: 'app-new-article',
@@ -21,7 +21,7 @@ export class NewArticleComponent {
 
     constructor(
         private formBuilder: FormBuilder,
-        private article: ArticleService,
+        private article: ArticleForTeacherService,
         private route: Router
     ) {}
 

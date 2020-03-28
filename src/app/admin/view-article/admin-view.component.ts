@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'app/shared/models/article';
 import { ArticleForSuperUserService } from 'app/shared/services/article-for-super-user.service';
-import { ArticleService } from 'app/shared/services/article.service';
+import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class AdminViewComponent implements OnInit {
     private article: Article;
 
     constructor(
-        private articleService: ArticleService,
+        private articleService: ArticleForTeacherService,
         private route: ActivatedRoute,
         private router: Router,
         private articleForSuperUser: ArticleForSuperUserService

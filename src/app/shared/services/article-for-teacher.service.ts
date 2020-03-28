@@ -7,7 +7,7 @@ import { HttpClientService } from './http-client.service';
 @Injectable({
     providedIn: 'root',
 })
-export class ArticleService {
+export class ArticleForTeacherService {
     articleList: Article[];
 
     constructor(private httpClient: HttpClientService) {}

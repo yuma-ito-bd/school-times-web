@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'app/shared/models/article';
-import { ArticleService } from 'app/shared/services/article.service';
+import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class ViewArticleComponent implements OnInit {
     article$: Observable<Article>;
 
-    constructor(private articleService: ArticleService, private router: ActivatedRoute) {}
+    constructor(private articleService: ArticleForTeacherService, private router: ActivatedRoute) {}
 
     ngOnInit() {
         this.router.params.subscribe(params => {

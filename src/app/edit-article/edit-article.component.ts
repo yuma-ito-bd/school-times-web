@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Article } from 'app/shared/models/article';
-import { ArticleService } from 'app/shared/services/article.service';
+import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 
 @Component({
     selector: 'app-edit-article',
@@ -20,7 +20,10 @@ export class EditArticleComponent implements OnInit {
         contents: this.contentsForm,
     });
 
-    constructor(private formBuilder: FormBuilder, private articleService: ArticleService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private articleService: ArticleForTeacherService
+    ) {}
 
     ngOnInit() {
         // TODO: パスパラメータからID取得
