@@ -25,7 +25,7 @@ export class HttpClientService {
     ): Observable<T> {
         const url = this.getUrl(path);
         const options = queryObj ? { params: new HttpParams({ fromObject: queryObj }) } : {};
-        console.log(`http GET request ${url}`);
+        console.log(`http GET request [${url}, ${JSON.stringify(options)}]`);
         return this.httpClient.get<T>(url, options).pipe(
             tap(data => {
                 console.log(`SUCCESS GET request [data: ${JSON.stringify(data)}]`);

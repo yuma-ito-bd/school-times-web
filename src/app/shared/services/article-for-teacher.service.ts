@@ -3,6 +3,7 @@ import { Article, STATUS } from 'app/shared/models/article';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClientService } from './core/http-client.service';
+import { UserService } from './user.service';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +11,7 @@ import { HttpClientService } from './core/http-client.service';
 export class ArticleForTeacherService {
     articleList: Article[];
 
-    constructor(private httpClient: HttpClientService) {}
+    constructor(private httpClient: HttpClientService, private user: UserService) {}
 
     /**
      * 学級だよりを1件取得する
@@ -35,12 +36,15 @@ export class ArticleForTeacherService {
      */
     getAll(): Observable<Article[]> {
         console.log(`AritcleService getAll`);
-        return this.httpClient.get<Article[]>('articles').pipe(
-            map(data => {
-                this.articleList = data;
-                return data;
-            })
-        );
+        const authorId = this.user.id.toString();
+        return this.httpClient
+            .get<Article[]>('articles', { authorId })
+            .pipe(
+                map(data => {
+                    this.articleList = data;
+                    return data;
+                })
+            );
     }
 
     /**
