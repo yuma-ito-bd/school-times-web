@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UpdateArticleRequest, UpdateArticleResponse } from '../interfaces/UpdateArticle';
 import { Article, STATUS } from '../models/article';
-import { HttpClientService } from './http-client.service';
+import { HttpClientService } from './core/http-client.service';
 
 @Injectable({
     providedIn: 'root',

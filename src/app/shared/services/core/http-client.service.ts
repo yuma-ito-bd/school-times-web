@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
@@ -17,10 +17,14 @@ export class HttpClientService {
     /**
      * GETリクエストを送る
      * @param path リソースパス
-     * @param options リクエストオプション
+     * @param queryObj クエリパラメータオブジェクト
      */
-    get<T>(path: string, options?: object): Observable<T> {
+    get<T>(
+        path: string,
+        queryObj?: { [param: string]: string | ReadonlyArray<string> }
+    ): Observable<T> {
         const url = this.getUrl(path);
+        const options = queryObj ? { params: new HttpParams({ fromObject: queryObj }) } : {};
         console.log(`http GET request ${url}`);
         return this.httpClient.get<T>(url, options).pipe(
             tap(data => {
