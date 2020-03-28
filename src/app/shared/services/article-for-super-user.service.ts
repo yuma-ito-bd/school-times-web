@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UpdateArticleRequest, UpdateArticleResponse } from '../interfaces/UpdateArticle';
-import { Article, STATUS } from '../models/article';
+import { Article, ARTICLE_STATUS } from '../models/article';
 import { HttpClientService } from './core/http-client.service';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ArticleForSuperUserService {
      */
     async publish(article: Article): Promise<void> {
         console.log(`ArticleForSuperUserService publish [${JSON.stringify(article)}]`);
-        article.status = STATUS.PUBLISHED;
+        article.status = ARTICLE_STATUS.PUBLISHED;
 
         const path = `articles/${article.id}`;
         const body: UpdateArticleRequest = new Article(article);

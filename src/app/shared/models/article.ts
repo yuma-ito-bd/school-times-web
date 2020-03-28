@@ -1,4 +1,4 @@
-export enum STATUS {
+export enum ARTICLE_STATUS {
     /** 一時保存（未申請） */
     DRAFT = 0,
     /** 申請済みで未公開 */
@@ -17,9 +17,9 @@ export class Article {
     /** 作成者 */
     author: string;
     /** 作成日 */
-    createdAt: Date;
+    createTime: Date;
     /** 状態 */
-    status: STATUS;
+    status: ARTICLE_STATUS;
 
     constructor(title: string, contents: string, author: string);
     constructor(data: Partial<Article>);
@@ -28,14 +28,14 @@ export class Article {
             this.title = data;
             this.contents = contents;
             this.author = author;
-            this.createdAt = new Date();
-            this.status = STATUS.DRAFT;
+            this.createTime = new Date();
+            this.status = ARTICLE_STATUS.DRAFT;
         } else {
             this.id = data.id;
             this.title = data.title;
             this.contents = data.contents;
             this.author = data.author;
-            this.createdAt = data.createdAt;
+            this.createTime = data.createTime;
             this.status = data.status;
         }
     }

@@ -3,6 +3,6 @@
     <p mat-line>
         <!-- 公開中とそれ以外を表す記号が欲しい -->
         <span>{{article.status | i18nPlural: statusMessage}} </span>・
-        <span>{{article.createdAt | date}}</span>
+        <span>{{article.createTime | date}}</span>
     </p>
 </mat-list-item>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Article, STATUS } from 'app/shared/models/article';
+import { Article, ARTICLE_STATUS } from 'app/shared/models/article';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { GetArticleResponse } from '../interfaces/get-article';
 import { HttpClientService } from './core/http-client.service';
 import { UserService } from './user.service';
 
@@ -38,11 +39,11 @@ export class ArticleForTeacherService {
         console.log(`AritcleService getAll`);
         const authorId = this.user.id.toString();
         return this.httpClient
-            .get<Article[]>('articles', { authorId })
+            .get<GetArticleResponse>('articles', { authorId })
             .pipe(
-                map(data => {
-                    this.articleList = data;
-                    return data;
+                map(({ articles }) => {
+                    this.articleList = articles.map(data => new Article(data));
+                    return this.articleList;
                 })
             );
     }
@@ -69,7 +70,7 @@ export class ArticleForTeacherService {
      */
     async requestPublishment(article: Article): Promise<void> {
         console.log(`ArticleService requestPublishment [title: ${article.title}]`);
-        article.status = STATUS.UNPUBLISHED;
+        article.status = ARTICLE_STATUS.UNPUBLISHED;
         await this.create(article);
     }
 
