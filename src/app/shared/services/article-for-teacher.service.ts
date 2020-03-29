@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article, ARTICLE_STATUS } from 'app/shared/models/article';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CreateArticleRequest, CreateArticleResponse } from '../interfaces/create-article';
 import { GetArticleResponse } from '../interfaces/get-article';
 import { HttpClientService } from './core/http-client.service';
 import { UserService } from './user.service';
@@ -37,9 +38,9 @@ export class ArticleForTeacherService {
      */
     getAll(): Observable<Article[]> {
         console.log(`AritcleService getAll`);
-        const authorId = this.user.id.toString();
+        const authorId = this.user.id;
         return this.httpClient
-            .get<GetArticleResponse>('articles', { authorId })
+            .get<GetArticleResponse>('articles', { authorId: authorId.toString() })
             .pipe(
                 map(({ articles }) => {
                     this.articleList = articles.map(data => new Article(data));
@@ -49,29 +50,41 @@ export class ArticleForTeacherService {
     }
 
     /**
-     * 学級だよりを作成する
-     * @param article 学級だより
+     * 学級だより（下書き）を作成する
+     * @param title タイトル
+     * @param contents 本文
      */
-    async create(article: Article): Promise<void> {
-        console.log(`AritcleService create [title: ${article.title}]`);
-        const result = await this.httpClient.post<Article>('articles', article).toPromise();
+    async createDraft(title: string, contents: string): Promise<void> {
+        const data: CreateArticleRequest = {
+            title,
+            contents,
+            status: ARTICLE_STATUS.DRAFT,
+            authorId: this.user.id,
+        };
+        console.log(`AritcleService createDraft [${JSON.stringify(data)}]`);
+        const result = await this.httpClient
+            .post<CreateArticleResponse>('articles', data)
+            .toPromise();
         console.log(`create success [data: ${JSON.stringify(result)}]`);
-        // TODO: Articleオブジェクトを再作成する
-        article.id = result.id;
-        if (!this.articleList) {
-            await this.getAll().toPromise();
-        }
-        this.articleList.unshift(article);
     }
 
     /**
-     * 公開申請をする
-     * @param article 公開申請したい記事
+     * 学級だより（申請対象）を作成する
+     * @param title タイトル
+     * @param contents 本文
      */
-    async requestPublishment(article: Article): Promise<void> {
-        console.log(`ArticleService requestPublishment [title: ${article.title}]`);
-        article.status = ARTICLE_STATUS.UNPUBLISHED;
-        await this.create(article);
+    async createPublishment(title: string, contents: string): Promise<void> {
+        const data: CreateArticleRequest = {
+            title,
+            contents,
+            status: ARTICLE_STATUS.UNPUBLISHED,
+            authorId: this.user.id,
+        };
+        console.log(`AritcleService createPublishment [${JSON.stringify(data)}]`);
+        const result = await this.httpClient
+            .post<CreateArticleResponse>('articles', data)
+            .toPromise();
+        console.log(`create success [data: ${JSON.stringify(result)}]`);
     }
 
     /**

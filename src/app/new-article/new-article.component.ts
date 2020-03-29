@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Article } from 'app/shared/models/article';
 import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 
 @Component({
@@ -30,8 +29,9 @@ export class NewArticleComponent {
      */
     async submit() {
         console.log('submit');
-        const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
-        await this.article.requestPublishment(article);
+        const title = this.titleForm.value;
+        const contents = this.contentsForm.value;
+        await this.article.createPublishment(title, contents);
         this.route.navigate(['/admin/top']);
     }
 
@@ -40,8 +40,9 @@ export class NewArticleComponent {
      */
     async save() {
         console.log('save');
-        const article = new Article(this.titleForm.value, this.contentsForm.value, 'A先生');
-        await this.article.create(article);
+        const title = this.titleForm.value;
+        const contents = this.contentsForm.value;
+        await this.article.createDraft(title, contents);
         this.route.navigate(['/admin/top']);
     }
 
