@@ -1,0 +1,20 @@
+{
+    "recommendations": [
+        // General
+        "coenraads.bracket-pair-colorizer-2",
+        "ibm.output-colorizer",
+        "christian-kohler.path-intellisense",
+        "vscode-icons-team.vscode-icons",
+        // Tool
+        "wmaurer.change-case",
+        "chrmarti.regex",
+        "msjsdiag.debugger-for-chrome",
+        // Git
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        // Linter
+        "ms-vscode.vscode-typescript-tslint-plugin",
+        // Angular
+        "angular.ng-template"
+    ]
+}
