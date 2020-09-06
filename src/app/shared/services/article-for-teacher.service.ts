@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CreateArticleRequest, CreateArticleResponse } from '../interfaces/create-article';
 import { GetArticleResponse } from '../interfaces/get-article';
+import { UpdateArticleRequest, UpdateArticleResponse } from '../interfaces/update-article';
 import { HttpClientService } from './core/http-client.service';
 import { UserService } from './user.service';
 
@@ -91,12 +92,18 @@ export class ArticleForTeacherService {
      * 学級だよりを更新する
      * @param updatedArticle 更新する学級だより
      */
-    update(updatedArticle: Article): void {
-        console.log(`AritcleService update [id: ${updatedArticle.id}]`);
-        // TODO: httpを呼ぶ
-        console.dir(updatedArticle);
-        const index = this.articleList.findIndex(article => article.id === updatedArticle.id);
-        this.articleList[index] = updatedArticle;
+    async update(article: Article): Promise<void> {
+        console.log(`AritcleService update`, article);
+        const body: UpdateArticleRequest = {
+            id: article.id,
+            title: article.title,
+            contents: article.contents,
+            status: article.status,
+            authorId: this.user.id,
+        };
+        await this.httpClient
+            .put<UpdateArticleResponse>(`articles/${article.id}`, body)
+            .toPromise();
     }
 
     /**
