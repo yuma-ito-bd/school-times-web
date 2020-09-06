@@ -1,0 +1,13 @@
+<main class="edit-article__main">
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <app-title-form [form]="titleForm"></app-title-form>
+        <div>
+            <app-contents-form [form]="contentsForm"></app-contents-form>
+        </div>
+        <div>
+            <button type="submit" mat-flat-button color="primary" class="edit-article__main__button__submit"
+                [disabled]="formGroup.invalid">更新</button>
+            <button type="button" mat-flat-button (click)="cancel()" class="edit-article__main__button__cancel">キャンセル</button>
+        </div>
+    </form>
+</main>

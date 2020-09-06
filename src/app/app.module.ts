@@ -8,13 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminTopComponent } from './admin/top/admin-top.component';
-import { ArticleCardForAdminComponent } from './admin/top/article-card-for-admin/article-card-for-admin.component';
-import { AdminViewComponent } from './admin/view-article/admin-view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
-import { NewArticleComponent } from './new-article/new-article.component';
 import { SharedModule } from './shared/shared.module';
 import { ArticleCardComponent } from './top/article-card/article-card.component';
 import { TopComponent } from './top/top.component';
@@ -24,17 +19,7 @@ import { ViewArticleComponent } from './view-article/view-article.component';
 registerLocaleData(localeJa);
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ViewArticleComponent,
-        NewArticleComponent,
-        EditArticleComponent,
-        TopComponent,
-        ArticleCardComponent,
-        AdminTopComponent,
-        ArticleCardForAdminComponent,
-        AdminViewComponent,
-    ],
+    declarations: [AppComponent, ViewArticleComponent, TopComponent, ArticleCardComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

@@ -1,0 +1,19 @@
+<main class="new-article__main">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div>
+            <app-title-form [form]="titleForm"></app-title-form>
+        </div>
+        <div>
+            <app-contents-form [form]="contentsForm"></app-contents-form>
+        </div>
+
+        <div>
+            <button type="submit" mat-flat-button color="primary" class="new-article__main__button__submit"
+                [disabled]="form.invalid">申請</button>
+            <button type="button" mat-flat-button (click)="save()" class="new-article__main__button__save"
+                [disabled]="form.invalid">下書き保存</button>
+            <button type="button" mat-flat-button (click)="cancel()"
+                class="new-article__main__button__cancel">キャンセル</button>
+        </div>
+    </form>
+</main>

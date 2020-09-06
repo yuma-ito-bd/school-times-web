@@ -1,0 +1,5 @@
+<mat-form-field>
+    <mat-label>本文</mat-label>
+    <textarea matInput [formControl]="form"></textarea>
+    <mat-error *ngIf="form.hasError('required')">必須項目です</mat-error>
+</mat-form-field>

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { concatMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -59,8 +59,6 @@ export class HttpClientService {
         console.log(`http PUT request ${url} [body: ${JSON.stringify(body)}`);
         const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
         return this.httpClient.put<T>(url, body, options).pipe(
-            // TODO: backend apiができたら消す
-            concatMap(() => this.get<T>(path)),
             tap(data => {
                 console.log(`SUCCESS PUT request [data: ${JSON.stringify(data)}]`);
             })

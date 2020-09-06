@@ -21,6 +21,7 @@ export class Article {
     /** 状態 */
     status: ARTICLE_STATUS;
 
+    // TODO 分かりづらいので、新規作成用とBFFからのデータ用でメソッドを分ける
     constructor(title: string, contents: string, author: string);
     constructor(data: Partial<Article>);
     constructor(data: string | Partial<Article>, contents?: string, author?: string) {
