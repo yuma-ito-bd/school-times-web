@@ -67,7 +67,7 @@ export class EditArticleComponent implements OnInit {
         console.log(this.formGroup.value);
         const newArticle = new Article({ ...this.article, ...this.formGroup.value });
         await this.articleService.update(newArticle);
-        this.router.navigate(['./top']);
+        this.router.navigate(['../../top'], { relativeTo: this.activatedRoute });
     }
 
     /**
