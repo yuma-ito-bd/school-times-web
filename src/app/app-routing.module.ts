@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditArticleComponent } from './admin/edit-article/edit-article.component';
+import { NewArticleComponent } from './admin/new-article/new-article.component';
 import { AdminTopComponent } from './admin/top/admin-top.component';
 import { AdminViewComponent } from './admin/view-article/admin-view.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
-import { NewArticleComponent } from './new-article/new-article.component';
 import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
