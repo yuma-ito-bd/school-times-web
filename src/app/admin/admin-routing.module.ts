@@ -9,7 +9,7 @@ const routes: Routes = [
     { path: '', component: AdminTopComponent },
     { path: 'new', component: NewArticleComponent },
     { path: 'view/:id', component: AdminViewComponent },
-    { path: 'edit', component: EditArticleComponent }, // TODO: pathParameterでID指定
+    { path: 'edit/:id', component: EditArticleComponent },
     { path: '**', redirectTo: '' },
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Article } from 'app/shared/models/article';
 import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 
@@ -22,14 +23,15 @@ export class EditArticleComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private articleService: ArticleForTeacherService
+        private articleService: ArticleForTeacherService,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
-        // TODO: パスパラメータからID取得
-        // this.article = this.articleService.get(0);
-        // this.titleForm.setValue(this.article.title);
-        // this.contentsForm.setValue(this.article.contents);
+        this.route.params.subscribe(async params => {
+            const id = Number(params.id);
+            this.article = await this.articleService.get(id).toPromise();
+        });
     }
 
     /**
