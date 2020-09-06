@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditArticleComponent } from './admin/edit-article/edit-article.component';
-import { NewArticleComponent } from './admin/new-article/new-article.component';
-import { AdminTopComponent } from './admin/top/admin-top.component';
-import { AdminViewComponent } from './admin/view-article/admin-view.component';
 import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
 const routes: Routes = [
-    { path: '', component: TopComponent },
+    { path: '', component: TopComponent, pathMatch: 'full' },
     { path: 'view/:id', component: ViewArticleComponent },
-    { path: 'edit', component: EditArticleComponent }, // TODO: pathParameterでID指定
-    { path: 'admin/top', component: AdminTopComponent },
-    { path: 'admin/new', component: NewArticleComponent },
-    { path: 'admin/view/:id', component: AdminViewComponent },
+    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
     { path: '**', redirectTo: '' },
 ];
 
