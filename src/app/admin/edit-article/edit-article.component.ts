@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'app/shared/models/article';
 import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
@@ -11,15 +11,9 @@ import { ArticleForTeacherService } from 'app/shared/services/article-for-teache
 })
 export class EditArticleComponent implements OnInit {
     article: Article;
-
-    titleForm = new FormControl('', [Validators.maxLength(30)]);
-
-    contentsForm = new FormControl('', [Validators.maxLength(1200)]);
-
-    form = this.formBuilder.group({
-        title: this.titleForm,
-        contents: this.contentsForm,
-    });
+    titleForm: FormControl;
+    contentsForm: FormControl;
+    formGroup: FormGroup;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,10 +22,40 @@ export class EditArticleComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.initializeForm();
+        // パスパラメータのidから学級だよりの情報を取得し、フォームにセットする
         this.route.params.subscribe(async params => {
             const id = Number(params.id);
             this.article = await this.articleService.get(id).toPromise();
+            this.setValueToForm(this.article);
         });
+    }
+
+    /**
+     * フォームの初期化を行う
+     */
+    private initializeForm(): void {
+        this.titleForm = this.formBuilder.control('', [
+            Validators.required,
+            Validators.maxLength(30),
+        ]);
+        this.contentsForm = this.formBuilder.control('', [
+            Validators.required,
+            Validators.maxLength(1200),
+        ]);
+        this.formGroup = this.formBuilder.group({
+            title: this.titleForm,
+            contents: this.contentsForm,
+        });
+    }
+
+    /**
+     * 編集対象の学級だよりの情報をフォームにセットする
+     * @params 学級だより
+     */
+    private setValueToForm({ title, contents }: Article) {
+        this.titleForm.setValue(title);
+        this.contentsForm.setValue(contents);
     }
 
     /**
