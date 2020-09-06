@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-title-form',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./title-form.component.scss'],
 })
 export class TitleFormComponent implements OnInit {
+    @Input() form: FormControl;
+
     constructor() {}
 
     ngOnInit() {}

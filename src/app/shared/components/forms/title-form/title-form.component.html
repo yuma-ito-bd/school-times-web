@@ -1,1 +1,5 @@
-<p>title-form works!</p>
+<mat-form-field>
+    <mat-label>タイトル</mat-label>
+    <input matInput type="text" [formControl]="form" />
+    <mat-error *ngIf="form.hasError('required')">必須項目です</mat-error>
+</mat-form-field>
