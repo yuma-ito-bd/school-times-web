@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule } from 'app/shared/components/forms/forms.module';
 import { EditArticleComponent } from './../admin/edit-article/edit-article.component';
 import { NewArticleComponent } from './../admin/new-article/new-article.component';
 import { AdminTopComponent } from './../admin/top/admin-top.component';
@@ -28,6 +29,7 @@ import { AdminRoutingModule } from './admin-routing.module';
         MatButtonModule,
         MatListModule,
         MatInputModule,
+        FormsModule,
     ],
 })
 export class AdminModule {}

@@ -1,25 +1,18 @@
 <main class="new-article__main">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div>
-            <mat-form-field>
-                <mat-label>タイトル</mat-label>
-                <input matInput type="text" [formControl]="titleForm" />
-                <mat-error *ngIf="titleForm.hasError('required')">必須項目です</mat-error>
-            </mat-form-field>
+            <app-title-form [form]="titleForm"></app-title-form>
         </div>
         <div>
-            <mat-form-field>
-                <mat-label>本文</mat-label>
-                <textarea matInput [formControl]="contentsForm"></textarea>
-                <mat-error *ngIf="contentsForm.hasError('required')">必須項目です</mat-error>
-            </mat-form-field>
+            <app-contents-form [form]="contentsForm"></app-contents-form>
         </div>
 
         <div>
-            <button type="submit" mat-stroked-button color="primary" class="new-article__main__button__submit" [disabled]="form.invalid">申請</button>
-            <button type="button" mat-stroked-button (click)="save()"
-                class="new-article__main__button__save" [disabled]="form.invalid">下書き保存</button>
-            <button type="button" mat-stroked-button (click)="cancel()"
+            <button type="submit" mat-flat-button color="primary" class="new-article__main__button__submit"
+                [disabled]="form.invalid">申請</button>
+            <button type="button" mat-flat-button (click)="save()" class="new-article__main__button__save"
+                [disabled]="form.invalid">下書き保存</button>
+            <button type="button" mat-flat-button (click)="cancel()"
                 class="new-article__main__button__cancel">キャンセル</button>
         </div>
     </form>
