@@ -6,11 +6,11 @@ import { AdminTopComponent } from './top/admin-top.component';
 import { AdminViewComponent } from './view-article/admin-view.component';
 
 const routes: Routes = [
-    { path: '', component: AdminTopComponent },
+    { path: 'top', component: AdminTopComponent },
     { path: 'new', component: NewArticleComponent },
     { path: 'view/:id', component: AdminViewComponent },
     { path: 'edit/:id', component: EditArticleComponent },
-    { path: '**', redirectTo: '' },
+    { path: '**', redirectTo: 'top' },
 ];
 
 @NgModule({

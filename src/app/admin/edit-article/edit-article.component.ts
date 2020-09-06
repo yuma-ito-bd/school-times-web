@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'app/shared/models/article';
 import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 
@@ -18,13 +18,14 @@ export class EditArticleComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private articleService: ArticleForTeacherService,
-        private route: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
         this.initializeForm();
         // パスパラメータのidから学級だよりの情報を取得し、フォームにセットする
-        this.route.params.subscribe(async params => {
+        this.activatedRoute.params.subscribe(async params => {
             const id = Number(params.id);
             this.article = await this.articleService.get(id).toPromise();
             this.setValueToForm(this.article);
@@ -60,13 +61,13 @@ export class EditArticleComponent implements OnInit {
 
     /**
      * 更新ボタン押下時処理
+     * 学級だよりの更新処理を行う
      */
-    submit() {
-        console.log(this.form.getRawValue());
-        this.article.title = this.titleForm.value;
-        this.article.contents = this.contentsForm.value;
-
-        this.articleService.update(this.article);
+    async submit() {
+        console.log(this.formGroup.value);
+        const newArticle = new Article({ ...this.article, ...this.formGroup.value });
+        await this.articleService.update(newArticle);
+        this.router.navigate(['./top']);
     }
 
     /**
@@ -74,5 +75,6 @@ export class EditArticleComponent implements OnInit {
      */
     cancel() {
         console.log('cancel');
+        this.router.navigate(['../../top'], { relativeTo: this.activatedRoute });
     }
 }

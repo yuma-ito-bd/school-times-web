@@ -5,4 +5,5 @@
         <span>{{article.status | i18nPlural: statusMessage}} </span>・
         <span>{{article.createTime | date}}</span>
     </p>
+    <button mat-button [routerLink]="['../edit', article.id]">編集</button>
 </mat-list-item>
