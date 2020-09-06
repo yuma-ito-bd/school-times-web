@@ -9,9 +9,8 @@ import { ArticleForTeacherService } from 'app/shared/services/article-for-teache
     styleUrls: ['./new-article.component.scss'],
 })
 export class NewArticleComponent {
-    titleForm = new FormControl('', [Validators.maxLength(30)]);
-
-    contentsForm = new FormControl('', [Validators.maxLength(1200)]);
+    titleForm = new FormControl('', [Validators.required, Validators.maxLength(30)]);
+    contentsForm = new FormControl('', [Validators.required, Validators.maxLength(1200)]);
 
     form = this.formBuilder.group({
         title: this.titleForm,
@@ -26,6 +25,7 @@ export class NewArticleComponent {
 
     /**
      * 申請ボタン押下時処理
+     * 公開申請済みの学級だよりを新規作成する
      */
     async submit() {
         console.log('submit');
@@ -37,6 +37,7 @@ export class NewArticleComponent {
 
     /**
      * 保存ボタン押下時処理
+     * 下書きの学級だよりを新規作成する
      */
     async save() {
         console.log('save');
