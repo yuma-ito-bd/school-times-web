@@ -4,7 +4,6 @@ import { Article } from 'app/shared/models/article';
 import { ArticleForSuperUserService } from 'app/shared/services/article-for-super-user.service';
 import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-admin-view',
@@ -14,7 +13,6 @@ import { tap } from 'rxjs/operators';
 export class AdminViewComponent implements OnInit {
     article$: Observable<Article>;
     private id: number;
-    private article: Article;
 
     constructor(
         private articleService: ArticleForTeacherService,
@@ -26,14 +24,15 @@ export class AdminViewComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = Number(params.id);
-            this.article$ = this.articleService
-                .get(this.id)
-                .pipe(tap(data => (this.article = new Article(data))));
+            this.article$ = this.articleService.get(this.id);
         });
     }
 
+    /**
+     * 学級だよりの公開許可をする
+     */
     async publish() {
-        await this.articleForSuperUser.publish(this.article);
+        await this.articleForSuperUser.publish(this.id);
         this.router.navigate(['admin/top']).then();
     }
 }

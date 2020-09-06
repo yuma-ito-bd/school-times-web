@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UpdateArticleRequest, UpdateArticleResponse } from '../interfaces/UpdateArticle';
-import { Article, ARTICLE_STATUS } from '../models/article';
 import { HttpClientService } from './core/http-client.service';
 
 @Injectable({
@@ -11,15 +9,10 @@ export class ArticleForSuperUserService {
 
     /**
      * 指定した学級だよりを公開する
-     * @param article 公開する学級だより
+     * @param articleId 公開する学級だよりのID
      */
-    async publish(article: Article): Promise<void> {
-        console.log(`ArticleForSuperUserService publish [${JSON.stringify(article)}]`);
-        article.status = ARTICLE_STATUS.PUBLISHED;
-
-        const path = `articles/${article.id}`;
-        const body: UpdateArticleRequest = new Article(article);
-        const response = await this.http.put<UpdateArticleResponse>(path, body).toPromise();
-        console.log(`学級だよりの公開が成功しました [id: ${response.id}] `);
+    async publish(articleId: number): Promise<void> {
+        console.log(`ArticleForSuperUserService publish the article`, { articleId });
+        await this.http.post(`articles/publish/${articleId}`).toPromise();
     }
 }
