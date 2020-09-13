@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'app/shared/models/article';
-import { ArticleForTeacherService } from 'app/shared/services/article-for-teacher.service';
+import { ArticleService } from 'app/shared/services/article.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 export class TopComponent implements OnInit {
     articleList$: Observable<Article[]>;
 
-    constructor(private articleService: ArticleForTeacherService) {}
+    constructor(private articleService: ArticleService) {}
 
     ngOnInit() {
-        this.articleList$ = this.articleService.getAll();
+        this.articleList$ = this.articleService.getAllPublishedArticles();
     }
 }
