@@ -1,5 +1,7 @@
-<ng-container *ngIf="(articleList$ | async) as list">
-    <div *ngFor="let item of list">
-        <app-article-card [article]=item></app-article-card>
-    </div>
-</ng-container>
+<main class="top__main">
+    <ng-container *ngIf="(articleList$ | async) as list">
+        <div *ngFor="let item of list" class="top__article__cards">
+            <app-article-card [article]=item></app-article-card>
+        </div>
+    </ng-container>
+</main>
