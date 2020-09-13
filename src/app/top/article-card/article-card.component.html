@@ -1,13 +1,14 @@
-<mat-card  routerLink="/view/{{article.id}}">
+<mat-card routerLink="/view/{{article.id}}" class="article-card">
     <mat-card-header>
-        <mat-card-title>{{article.title}}</mat-card-title>
-        <mat-card-subtitle>
-            <div>{{article.author}}</div>
-            <div>{{article.createTime | date}}</div>
-        </mat-card-subtitle>
+        <div mat-card-avatar>
+            <mat-icon class="article-card__header__avatar">face</mat-icon>
+        </div>
+            <mat-card-title>{{article.title}}</mat-card-title>
+            <mat-card-subtitle>
+                <span>{{article.author}}</span>・<span>{{article.createTime | date}}</span>
+            </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content><p>{{article.contents}}</p></mat-card-content>
-    <mat-card-footer>
-        <div>状態：{{article.status}} </div>
-    </mat-card-footer>
+    <mat-card-content>
+        <p>{{article.contents}}</p>
+    </mat-card-content>
 </mat-card>

@@ -2,6 +2,7 @@ import { registerLocaleData } from '@angular/common';
 import localeJa from '@angular/common/locales/ja';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -30,6 +31,7 @@ registerLocaleData(localeJa);
         MatButtonModule,
         MatListModule,
         MatInputModule,
+        MatIconModule,
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
     bootstrap: [AppComponent],
