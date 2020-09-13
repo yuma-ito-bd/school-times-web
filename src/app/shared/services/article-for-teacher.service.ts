@@ -61,6 +61,7 @@ export class ArticleForTeacherService {
             contents,
             status: ARTICLE_STATUS.DRAFT,
             authorId: this.user.id,
+            classId: this.user.classId,
         };
         console.log(`AritcleService createDraft [${JSON.stringify(data)}]`);
         const result = await this.httpClient
@@ -80,6 +81,7 @@ export class ArticleForTeacherService {
             contents,
             status: ARTICLE_STATUS.UNPUBLISHED,
             authorId: this.user.id,
+            classId: this.user.classId,
         };
         console.log(`AritcleService createPublishment [${JSON.stringify(data)}]`);
         const result = await this.httpClient
