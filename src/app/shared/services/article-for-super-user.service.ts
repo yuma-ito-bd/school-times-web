@@ -13,6 +13,7 @@ export class ArticleForSuperUserService {
      */
     async publish(articleId: number): Promise<void> {
         console.log(`ArticleForSuperUserService publish the article`, { articleId });
-        await this.http.post(`articles/publish/${articleId}`).toPromise();
+        await this.http.post(`articles/published/${articleId}`).toPromise();
+        console.log('学級だよりの公開に成功しました。', { articleId });
     }
 }
