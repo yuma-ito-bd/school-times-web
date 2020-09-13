@@ -4,6 +4,7 @@ export type CreateArticleRequest = {
     title: string;
     contents: string;
     authorId: number;
+    classId: number;
     status: ARTICLE_STATUS;
 }
 
@@ -15,5 +16,6 @@ export type CreateArticleResponse = {
     title?: string;
     contents?: string;
     authorId: number;
+    classId: number;    
     status: number;
 }
