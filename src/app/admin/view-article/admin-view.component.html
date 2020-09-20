@@ -1,8 +1,4 @@
 <main>
-    <a routerLink="../../top" class="admin-view__back">
-        <mat-icon class="admin-view__back__icon">navigate_before</mat-icon>一覧へ
-    </a>
-
     <ng-container *ngIf="( article$ | async ) as article">
         <article class="admin-view__article">
             <h1>{{article.title}}</h1>
@@ -10,21 +6,25 @@
                 <mat-icon class="admin-view__article__content-header__author__icon">face</mat-icon>
                 <div class="admin-view__article__content-header__author__info">
                     <div class="admin-view__article__content-header__author__info__name">{{article.author}}</div>
-                    <span class="admin-view__article__content-header__info__time">{{article.createTime | date}}</span>
+                    <span class="admin-view__article__content-header__author__info__time">{{article.createTime | date}}</span>
                 </div>
             </div>
             <div class="admin-view__article__body">{{article.contents}}</div>
         </article>
 
-        <div class="admin-view__article__allow-publishment">
-            <div class="admin-view__article__allow-publishment__title">
+        <div class="admin-view__allow-publishment">
+            <div class="admin-view__allow-publishment__title">
                 <span>保護者向けに公開しても良い場合は公開許可をしてください。即時に公開されます。</span>
             </div>
-            <div class="admin-view__article__allow-publishment__body">
+            <div class="admin-view__allow-publishment__body">
                 <button mat-flat-button color="primary" (click)="publish()">
                     <mat-icon>publish</mat-icon> 公開許可
                 </button>
             </div>
         </div>
     </ng-container>
+    
+    <a routerLink="../../top" class="admin-view__back">
+        <mat-icon class="admin-view__back__icon">navigate_before</mat-icon>一覧に戻る
+    </a>
 </main>

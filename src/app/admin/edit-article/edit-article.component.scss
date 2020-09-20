@@ -1,5 +1,7 @@
 .edit-article__main {
-    margin: 1rem;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 1rem;
 
     &__button__submit{
         margin-right: 1rem;
