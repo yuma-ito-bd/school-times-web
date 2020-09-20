@@ -1,8 +1,11 @@
 .top__main {
     display: flex;
     flex-direction: column;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .top__article__cards {
-    margin: 1rem auto;
+    margin: 1rem 0;
 }
