@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "dist/school-times-web/",
+    "target": "school-times-web",
+    "public": "dist/school-times-web",
     "ignore": [
       "firebase.json",
       "**/.*",
