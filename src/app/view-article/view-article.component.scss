@@ -1,0 +1,38 @@
+main {
+    width: 620px;
+    margin: auto;
+}
+
+.view-article__back {
+    &__icon {
+        vertical-align: middle;
+    }
+    text-decoration: none;
+}
+
+.view-article__article {
+    margin-bottom: 2rem;
+    
+    &__content-header__author {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+
+        &__icon {
+            margin-right: 8px;
+        }
+
+        &__info {
+            font-size: 12px;
+
+            &__time {
+                font-size: 12px;
+                color: gray;
+            }
+        }
+    }
+
+    &__body {
+        white-space: pre-line;
+    }
+}
