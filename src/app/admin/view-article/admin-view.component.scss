@@ -11,10 +11,12 @@ main {
 }
 
 .admin-view__article {
+    margin-bottom: 2rem;
+
     &__content-header__author {
         display: flex;
         align-items: center;
-        margin-bottom: 16px;
+        margin-bottom: 2rem;
 
         &__icon {
             margin-right: 8px;
@@ -22,9 +24,7 @@ main {
 
         &__info {
             font-size: 12px;
-
             &__time {
-                font-size: 12px;
                 color: gray;
             }
         }
@@ -33,24 +33,24 @@ main {
     &__body {
         white-space: pre-line;
     }
+}
 
-    &__allow-publishment {
-        margin-top: 16px;
-        margin-bottom: 32px;
-        padding: 16px;
-        background-color: whitesmoke;
+.admin-view__allow-publishment {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: whitesmoke;
 
-        &__title {
-            margin-bottom: 16px;
-            font-size: 12px;
-            font-weight: bold;
-        }
+    &__title {
+        margin-bottom: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+    }
 
-        &__body {
-            background-color: white;
-            padding: 24px 16px;
-            display: flex;
-            justify-content: center;
-        }
+    &__body {
+        background-color: white;
+        padding: 1.5rem 1rem;
+        display: flex;
+        justify-content: center;
     }
 }
