@@ -15,6 +15,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthenticationModule } from './authentication/authentication.module';
 import { SharedModule } from './shared/shared.module';
 import { ArticleCardComponent } from './top/article-card/article-card.component';
 import { TopComponent } from './top/top.component';
@@ -39,6 +40,7 @@ registerLocaleData(localeJa);
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
         NgxAuthFirebaseUIModule.forRoot(environment.firebaseConfig),
+        AuthenticationModule,
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
     bootstrap: [AppComponent],
