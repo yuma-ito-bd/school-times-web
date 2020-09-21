@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseUISignInSuccessWithAuthResult } from 'firebaseui-angular';
 
 @Component({
     selector: 'app-login',
@@ -9,4 +10,11 @@ export class LoginComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {}
+
+    /**
+     * onSuccess
+     */
+    public onSuccess(event: FirebaseUISignInSuccessWithAuthResult) {
+        console.log(event);
+    }
 }

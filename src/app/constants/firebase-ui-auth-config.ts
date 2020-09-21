@@ -8,4 +8,6 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
             provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
         },
     ],
+    siteName: 'SchoolTimes',
+    signInSuccessUrl: '/top',
 };

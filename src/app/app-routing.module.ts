@@ -5,11 +5,11 @@ import { TopComponent } from './top/top.component';
 import { ViewArticleComponent } from './view-article/view-article.component';
 
 const routes: Routes = [
-    { path: '', component: TopComponent, pathMatch: 'full' },
+    { path: 'top', component: TopComponent },
     { path: 'view/:id', component: ViewArticleComponent },
     { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
     { path: 'login', component: LoginComponent },
-    { path: '**', redirectTo: '' },
+    { path: '**', redirectTo: 'top' },
 ];
 
 @NgModule({
