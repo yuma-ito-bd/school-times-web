@@ -1,6 +1,8 @@
 import { registerLocaleData } from '@angular/common';
 import localeJa from '@angular/common/locales/ja';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +36,9 @@ registerLocaleData(localeJa);
         MatListModule,
         MatInputModule,
         MatIconModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        NgxAuthFirebaseUIModule.forRoot(environment.firebaseConfig),
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
     bootstrap: [AppComponent],
