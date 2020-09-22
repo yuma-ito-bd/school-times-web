@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class ViewArticleComponent implements OnInit {
     article$: Observable<Article>;
 
+    // TODO 通常のArticleサービスから取得する
     constructor(private articleService: ArticleForTeacherService, private router: ActivatedRoute) {}
 
     ngOnInit() {
