@@ -14,4 +14,21 @@ export class UserAttribute {
             throw new Error(`値が不正です。[value: ${value}]`);
         }
     }
+
+    /**
+     * 番号から該当するユーザー属性のインスタンスを生成する
+     * @param num 属性の番号
+     */
+    public static fromNumber(num: number): UserAttribute {
+        switch (num) {
+            case 1:
+                return new UserAttribute('Parent');
+            case 2:
+                return new UserAttribute('Teacher');
+            case 3:
+                return new UserAttribute('SuperUser');
+            default:
+                throw new Error('number is invalid');
+        }
+    }
 }
