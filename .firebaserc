@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "schooltimes-2227d"
+  },
+  "targets": {
+    "schooltimes-2227d": {
+      "hosting": {
+        "school-times-web": [
+          "schooltimes-2227d"
+        ]
+      }
+    }
+  }
+}
