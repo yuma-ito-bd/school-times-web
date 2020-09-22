@@ -5,16 +5,17 @@ import { UserAttribute } from '../models/user-attribute';
     providedIn: 'root',
 })
 export class UserService {
-    readonly id: number;
-    readonly name: string;
-    readonly classId: number;
-    readonly attribute: UserAttribute;
+    id: number;
+    name: string;
+    classId: number;
+    attribute: UserAttribute;
 
-    constructor() {
-        // TODO: 一時的に設定
-        this.id = 11;
-        this.name = '山田 太郎';
-        this.attribute = new UserAttribute('Teacher');
-        this.classId = 1;
+    constructor() {}
+
+    public setUser(user: Partial<UserService>) {
+        this.id = user.id;
+        this.name = user.name;
+        this.classId = user.classId;
+        this.attribute = user.attribute;
     }
 }

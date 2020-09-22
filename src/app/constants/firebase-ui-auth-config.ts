@@ -9,5 +9,4 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
         },
     ],
     siteName: 'SchoolTimes',
-    signInSuccessUrl: '/top',
 };
