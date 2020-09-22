@@ -19,7 +19,14 @@ export class LoginComponent implements OnInit {
         private auth: AngularFireAuth,
         private database: AngularFireDatabase,
         private router: Router
-    ) {}
+    ) {
+        this.auth.user.pipe(take(1)).subscribe(user => {
+            // ログイン済みの場合はTOP画面に遷移させる
+            if (user != null) {
+                this.router.navigate(['top']);
+            }
+        });
+    }
 
     ngOnInit() {}
 
@@ -45,8 +52,5 @@ export class LoginComponent implements OnInit {
 
         // TOP画面に遷移
         this.router.navigate(['top']);
-    }
-    public logout() {
-        this.auth.signOut();
     }
 }
